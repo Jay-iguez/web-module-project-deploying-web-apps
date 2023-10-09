@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+// State CSS variables
+
+export const CSSBasis = {
+    cssPropExists: false,
+    fontSize: '1.5rem',
+    burgerWidth: '5rem',
+    burgerHeight: '.8rem',
+    legacyHamburgerInput: false
+}
+
 export const CSSVariablesApp = styled.div`
   *, *::after, *::before {
     box-sizing: border-box;
@@ -23,6 +33,9 @@ export const CSSVariablesApp = styled.div`
 
 `;
 
+
+// Navigation Styles
+
 export const NavigationMenu = styled.div`
 
 font-size: var(--font-size);
@@ -42,10 +55,39 @@ font-size: var(--font-size);
     cursor: pointer;
 }
 
+.legacy-x {
+    text-align: center;
+    position: relative;
+    font-size: calc(var(--font-size) * 3);
+    top: -5.5rem;
+    left: -7.8vw;
+    background-color: #333;
+    border: none;
+    color: white;
+    font-weight: bold;
+    pointer-events: none;
+    -webkit-touch-callout: none;
+     -khtml-user-select: none; 
+       -moz-user-select: none; 
+        -ms-user-select: none; 
+            user-select: none; 
+    
+}
+
+//
+
 .hamburger-menu:has(input:checked) {
     --foreground: white;
     --background: #333;
 }
+
+.hamburger-menu.legacy.open {
+    --foreground: white;
+    --background: #333;
+
+}
+
+//
 
 .hamburger-menu:has(input:focus-visible)::before,
 .hamburger-menu:has(input:focus-visible)::after,
@@ -74,6 +116,7 @@ font-size: var(--font-size);
     pointer-events: none;
 }
 
+//
 .hamburger-menu:has(input:checked)::before {
     rotate: 45deg;
     width: var(--x-width);
@@ -91,6 +134,24 @@ font-size: var(--font-size);
     width: 0;
 }
 
+.hamburger-menu.legacy.open::before {
+    rotate: 45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / -2);
+}
+
+.hamburger-menu.legacy.open::after {
+    rotate: -45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / 2)
+}
+
+.hamburger-menu.legacy.open {
+    opacity: 0;
+    width: 0;
+}
+//
+
 // Sidebar Styles
 
 .sidebar {
@@ -106,12 +167,14 @@ font-size: var(--font-size);
 
     display: flex;
     flex-flow: column nowrap;
-}
-
+}//
 .hamburger-menu:has(input:checked) + .sidebar {
     translate: 0;
 } 
-
+.hamburger-menu.legacy.open + .sidebar {
+    translate: 0
+}
+//
 aside {
     gap: 1rem;
 }
