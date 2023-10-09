@@ -1,8 +1,22 @@
-import './App.css';
 import React, { useState, useEffect } from 'react';
 import { CSSVariablesApp, NavigationMenu } from './styled-components/App-js-styled';
 import { CSSBasis } from './styled-components/App-js-styled';
 import { Routes, Route, Link, BrowserRouter } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import thunk from 'redux-thunk'
+import { teamBuilderReducer } from './reducers/teamBuilderReducer';
+
+export const REDUCERS = {
+  teamBuilderReducer: 'teamBuilderReducer'
+}
+
+export const store = configureStore({
+  reducer: {
+    teamBuilderState: teamBuilderReducer
+  },
+  middleware: [...getDefaultMiddleware(), thunk]
+})
 
 function App() {
 
@@ -18,13 +32,13 @@ function App() {
 
     document.body.removeChild(container);
 
+
     setCSSCondition({ ...CSSBasis, cssPropExists: Boolean(result) });
 
   }, []);
 
-  console.log(CSSCondition)
 
-  const hamburgerOnChange = (e, boolean) => {
+  const hamburgerOnChange = (e) => {
     setCSSCondition({ ...CSSCondition, legacyHamburgerInput: e.target.checked })
   }
 
@@ -39,7 +53,7 @@ function App() {
     } else if (!CSSCondition.legacyHamburgerInput && className === 'hamburger-menu') {
       return 'hamburger-menu legacy'
     }
-    
+
   }
 
 
@@ -57,7 +71,7 @@ function App() {
           <aside className={CSSCondition.cssPropExists ? 'sidebar' : conditionalHamburgerLegacyLogic('sidebar')}>
             {
               !CSSCondition.cssPropExists ?
-              <div className={`legacy-x`}>X</div> : null
+                <div className={`legacy-x`}>X</div> : null
             }
             <h3>Canis Lupus</h3>
             <nav>
@@ -71,6 +85,10 @@ function App() {
             </nav>
           </aside>
         </NavigationMenu>
+        <div style={{ flex: 1 }}>
+          <h1>Content I want to appear amongst NavigationMenu but not underneath</h1>
+        </div>
+
       </CSSVariablesApp>
     </BrowserRouter>
 

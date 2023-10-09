@@ -31,6 +31,8 @@ export const CSSVariablesApp = styled.div`
         font-size: var(--font-size);
     }
 
+    display: flex;
+
 `;
 
 
@@ -40,10 +42,12 @@ export const NavigationMenu = styled.div`
 
 font-size: var(--font-size);
 
+//
 .hamburger-menu {
     --x-width: calc(var(--hamburger-height) * 1.41421356237);
 
     display: flex;
+    flex: 0 0 auto;
     flex-direction: column;
     gap: var(--hamburger-gap);
     font-size: var(--font-size);
@@ -57,10 +61,9 @@ font-size: var(--font-size);
 
 .legacy-x {
     text-align: center;
-    position: relative;
+    position: absolute;
     font-size: calc(var(--font-size) * 3);
-    top: -5.5rem;
-    left: -7.8vw;
+    top: -.5rem;
     background-color: #333;
     border: none;
     color: white;
@@ -73,6 +76,7 @@ font-size: var(--font-size);
             user-select: none; 
     
 }
+//
 
 //
 
