@@ -30,6 +30,22 @@ export const CSSVariablesApp = styled.div`
         font-size: var(--font-size);
     }
 
+    .hamburger-overlay {
+    position: absolute;
+    z-index: 999;
+    width: calc(var(--bar-width) + 1rem);
+    height: calc(var(--bar-height) + 3.5rem);
+    background-color: transparent;
+    }
+
+    .navigation-toggle.active {
+        pointer-events: auto;
+    }
+
+    .navigation-toggle.not-active {
+        pointer-events: none;
+    }
+    
     display: flex;
 `;
 
@@ -38,6 +54,8 @@ export const CSSVariablesApp = styled.div`
 export const NavigationMenu = styled.div`
 font-size: var(--font-size);
 position: fixed;
+
+
 
 //
 .hamburger-menu {
@@ -57,7 +75,7 @@ position: fixed;
 
 .legacy-x {
     text-align: center;
-    position: absolute;
+    position: fixed;
     font-size: calc(var(--font-size) * 3);
     top: -.5rem;
     background-color: #333;
@@ -65,12 +83,6 @@ position: fixed;
     color: white;
     font-weight: bold;
     pointer-events: none;
-    -webkit-touch-callout: none;
-     -khtml-user-select: none; 
-       -moz-user-select: none; 
-        -ms-user-select: none; 
-            user-select: none; 
-    
 }
 //
 
@@ -103,7 +115,6 @@ position: fixed;
     padding: 0;
     margin: 0;
     outline: none;
-    pointer-events: none;
 }
 
 //
@@ -122,6 +133,7 @@ position: fixed;
 .hamburger-menu input:checked {
     opacity: 0;
     width: 0;
+    pointer-events: none;
 }
 
 .hamburger-menu.legacy.open::before {
@@ -140,6 +152,7 @@ position: fixed;
     opacity: 0;
     width: 0;
 }
+
 //
 
 // Sidebar Styles
