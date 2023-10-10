@@ -1,4 +1,4 @@
-import { REDUCERS } from "../App"
+import { REDUCERS } from "../index"
 
 export const ACTIONS = {
     LOG : 'LOG'

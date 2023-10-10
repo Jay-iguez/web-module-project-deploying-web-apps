@@ -25,27 +25,23 @@ export const CSSVariablesApp = styled.div`
     --animation-timing: 200ms ease-in-out;
     --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
 
-
     body {
         margin: 0;
         font-size: var(--font-size);
     }
 
     display: flex;
-
 `;
-
 
 // Navigation Styles
 
 export const NavigationMenu = styled.div`
-
 font-size: var(--font-size);
+position: fixed;
 
 //
 .hamburger-menu {
     --x-width: calc(var(--hamburger-height) * 1.41421356237);
-
     display: flex;
     flex: 0 0 auto;
     flex-direction: column;
@@ -78,20 +74,10 @@ font-size: var(--font-size);
 }
 //
 
-//
-
 .hamburger-menu:has(input:checked) {
     --foreground: white;
     --background: #333;
 }
-
-.hamburger-menu.legacy.open {
-    --foreground: white;
-    --background: #333;
-
-}
-
-//
 
 .hamburger-menu:has(input:focus-visible)::before,
 .hamburger-menu:has(input:focus-visible)::after,
@@ -161,22 +147,23 @@ font-size: var(--font-size);
 .sidebar {
     transition: translate var(--animation-timing);
     padding: 0.5rem 1rem;
-    translate: -100%;
+    translate: -110%;
     padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
     background-color: var(--foreground);
     color: var(--background);
-    min-width: 20vw;
-    max-width: fit-content;
+    max-width: 20vw;
     min-height: 100vh;
-
     display: flex;
     flex-flow: column nowrap;
-}//
+    overflow: hidden;
+}
+
+//
 .hamburger-menu:has(input:checked) + .sidebar {
     translate: 0;
 } 
 .hamburger-menu.legacy.open + .sidebar {
-    translate: 0
+    translate: 0;
 }
 //
 aside {
@@ -208,7 +195,6 @@ nav {
 
 .nav-item:not(:hover){
     transition: translate var(--animation-timing);
-    translate: -10%;
     border-left: .5rem solid grey;
 }
 
@@ -220,5 +206,12 @@ nav:not(:hover) {
     transition: box-shadow var(--animation-timing);
     box-shadow: 5px 5px 2px #676767;
 }
+
+@media screen and (max-width: 620px) {
+    .sidebar {
+        max-width: 40vw;
+    }
+}
 `;
+
 

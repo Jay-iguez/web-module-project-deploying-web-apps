@@ -1,96 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import { CSSVariablesApp, NavigationMenu } from './styled-components/App-js-styled';
 import { CSSBasis } from './styled-components/App-js-styled';
-import { Routes, Route, Link, BrowserRouter } from 'react-router-dom'
-import { connect } from 'react-redux';
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import thunk from 'redux-thunk'
-import { teamBuilderReducer } from './reducers/teamBuilderReducer';
-
-export const REDUCERS = {
-  teamBuilderReducer: 'teamBuilderReducer'
-}
-
-export const store = configureStore({
-  reducer: {
-    teamBuilderState: teamBuilderReducer
-  },
-  middleware: [...getDefaultMiddleware(), thunk]
-})
+import { Routes, Route, Link } from 'react-router-dom'
+import { doesCSSPropExist, conditionalHamburgerLegacyLogic } from './logic/App-js-logic';
+import TeamBuilder from './main-components/TeamBuilder';
+import Home from './main-components/Home';
 
 function App() {
 
-  const [CSSCondition, setCSSCondition] = useState(false)
+  const [CSSConditions, setCSSConditions] = useState(false)
 
   useEffect(() => {
-    const container = document.createElement('div');
-
-    container.style.display = 'none';
-    document.body.appendChild(container);
-
-    const result = window.getComputedStyle(container, ':has')?.getPropertyValue('content');
-
-    document.body.removeChild(container);
-
-
-    setCSSCondition({ ...CSSBasis, cssPropExists: Boolean(result) });
-
+    setCSSConditions({ ...CSSBasis, cssPropExists: doesCSSPropExist() });
   }, []);
 
-
   const hamburgerOnChange = (e) => {
-    setCSSCondition({ ...CSSCondition, legacyHamburgerInput: e.target.checked })
+    setCSSConditions({ ...CSSConditions, legacyHamburgerInput: e.target.checked })
   }
-
-  const conditionalHamburgerLegacyLogic = (className) => {
-
-    if (CSSCondition.legacyHamburgerInput && className === 'sidebar') {
-      return 'sidebar open'
-    } else if (!CSSCondition.legacyHamburgerInput && className === 'sidebar') {
-      return 'sidebar'
-    } else if (CSSCondition.legacyHamburgerInput && className === 'hamburger-menu') {
-      return 'hamburger-menu legacy open'
-    } else if (!CSSCondition.legacyHamburgerInput && className === 'hamburger-menu') {
-      return 'hamburger-menu legacy'
-    }
-
-  }
-
 
   return (
-    <BrowserRouter>
-      <CSSVariablesApp remSize={CSSCondition}>
+    <>
+      <CSSVariablesApp remSize={CSSConditions}>
         <NavigationMenu>
-          <label className={CSSCondition.cssPropExists ? `hamburger-menu` : conditionalHamburgerLegacyLogic('hamburger-menu')}>
+          <label className={CSSConditions.cssPropExists ? `hamburger-menu` : conditionalHamburgerLegacyLogic('hamburger-menu', CSSConditions)}>
             <input
               type='checkbox'
-              value={CSSCondition.legacyHamburgerInput}
+              value={CSSConditions.legacyHamburgerInput}
               onChange={hamburgerOnChange}
             />
           </label>
-          <aside className={CSSCondition.cssPropExists ? 'sidebar' : conditionalHamburgerLegacyLogic('sidebar')}>
+          <aside className={CSSConditions.cssPropExists ? 'sidebar' : conditionalHamburgerLegacyLogic('sidebar', CSSConditions)}>
             {
-              !CSSCondition.cssPropExists ?
+              !CSSConditions.cssPropExists ?
                 <div className={`legacy-x`}>X</div> : null
             }
-            <h3>Canis Lupus</h3>
+            <h3>Navigation</h3>
+              <Link className={`nav-item`} to={`/`}>Home</Link>
+            <h3>Project Pages</h3>
             <nav>
-              <Link className={`nav-item`} to={`/wolves`}>Wolves</Link>
-              <Link className={`nav-item`} to={`/dogs`}>Dogs</Link>
-              <Link className={`nav-item`} to={`/canines`}>Canines</Link>
-            </nav>
-            <h3>Felines</h3>
-            <nav>
-              <Link className={`nav-item`} to={`/cats`}>Cats</Link>
+              <Link className={`nav-item`} to={`/teambuilder`}>Team Builder</Link>
+              <Link className={`nav-item`} to={`/dogs`}>Dogs List</Link>
             </nav>
           </aside>
         </NavigationMenu>
-        <div style={{ flex: 1 }}>
-          <h1>Content I want to appear amongst NavigationMenu but not underneath</h1>
-        </div>
-
       </CSSVariablesApp>
-    </BrowserRouter>
+      <Routes>
+            <Route path={`/`} element={<Home />}></Route>
+            <Route path={`/teambuilder`} element={<TeamBuilder />}></Route>
+      </Routes>
+    </>
+
 
   );
 }
