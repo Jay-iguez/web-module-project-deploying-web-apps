@@ -20,6 +20,7 @@ export const Container = styled.div`
 
 export const DogContainer = styled(Container)`
     max-width: 25em;
+    min-width: 25em;
     max-height: 25em;
     overflow: auto;
     margin: .5em 2em;
@@ -56,6 +57,12 @@ export const Form = styled.form`
     label {
         margin: 1em 20%;
         border-bottom: .2em solid #a66122;
+    }
+    input {
+        border-radius: .5em;
+        border: .1em solid #a66122;
+        background-color: #d6cbbe;
+        color: #8f5f5f;
     }
     button {
         border: .2em solid #a66122;
@@ -153,6 +160,15 @@ export const TextBox = styled.div`
         padding-left: 5em;
         font-size: calc(var(--font-size) + .2em);
     }
+    }
+`
+
+export const FormErrors = styled.div`
+    width: 50%;
+    padding-left: 25%;
+    p {
+        border-bottom: .3em solid #c84d2f;
+        font-size: calc(var(--font-size) + .1em);
     }
 `
 

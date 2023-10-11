@@ -4,12 +4,12 @@ const formSchema = Yup.object().shape({
 name: Yup
 .string()
 .trim()
-.required("All dogs have a name!")
+.required("Dogs have names, please tell us yours!")
 .min(1, "We doubt your name is less than 1 character long..."),
 email: Yup
 .string()
 .email("You must have a valid email address, no AOL here.")
-.required("Any dog must have an email address."),
+.required("Dog of this century must have an email address."),
 role: Yup
 .string()
 .oneOf(["Barista"], "A Barista is all we're looking for, sorry!"),

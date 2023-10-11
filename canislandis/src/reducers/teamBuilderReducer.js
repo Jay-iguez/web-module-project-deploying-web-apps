@@ -64,15 +64,9 @@ export const teamBuilderReducer = (state = initialState(), action) => {
                 formValues: {...state.formValues, [action.payload.name] : action.payload.value}
             }
         case ACTIONS.SET_FORM_ERRORS:
-            const err = action.payload.err
             return {
                 ...state,
-                formErrors: {...state.formErrors, [action.payload.name] : state[err].formErrors[0]}
-            }
-        case ACTIONS.REVERT_ERRORS:
-            return {
-                ...state,
-                formErrors: {...state.formErrors, [action.payload.name] : '' }
+                formErrors: action.payload
             }
         case ACTIONS.REVERT_VALUES:
             return {
@@ -88,6 +82,11 @@ export const teamBuilderReducer = (state = initialState(), action) => {
             return {
                 ...state,
                 disabled: action.payload
+            }
+        case ACTIONS.SUBMIT:
+            return {
+                ...state,
+                hasSubmit: true
             }
         default:
             return state

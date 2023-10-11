@@ -14,12 +14,14 @@ export default function TeamMembersTeamBuilder() {
                         <DogContainer>
                             {
                                 Object.keys(member).map(dog => {
-                                    return (
+                                    if (dog !== 'chew') {
+                                        return (
                                         <>
                                             <h2>{dog.charAt(0).toUpperCase() + dog.substring(1)}</h2>
                                             <p>{member[dog]}</p>
                                         </>
                                     )
+                                    }
                                 })
                             }
                         </DogContainer>

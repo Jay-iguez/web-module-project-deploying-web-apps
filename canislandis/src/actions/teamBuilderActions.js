@@ -6,7 +6,7 @@ export const ACTIONS = {
     REVERT_VALUES : 'REVERT_VALUES',
     ENABLE_BUTTON : "ENABLE_BUTTON",
     SET_FORM_ERRORS: "SET_FORM_ERRORS",
-    REVERT_ERRORS: 'REVERT_ERRORS'
+    SUBMIT: 'SUBMIT'
 }
 
 export const updateValues = (formInput) => {
@@ -25,10 +25,10 @@ export const enableButton = (valid) => {
     return({type: ACTIONS.ENABLE_BUTTON, payload: valid, reducer: REDUCERS.teamBuilderReducer})
 }
 
-export const setFormErrors = (formError) => {
-    return({type: ACTIONS.SET_FORM_ERRORS, payload: formError, reducer: REDUCERS.teamBuilderReducer})
+export const setFormErrors = (formErrors) => {
+    return({type: ACTIONS.SET_FORM_ERRORS, payload: formErrors, reducer: REDUCERS.teamBuilderReducer})
 }
 
-export const revertErrors = () => {
-    return({type: ACTIONS.REVERT_ERRORS, reducer: REDUCERS.teamBuilderReducer})
+export const submitForm = () => {
+    return({type: ACTIONS.SUBMIT, reducer: REDUCERS.teamBuilderReducer})
 }
