@@ -7,7 +7,8 @@ import TeamBuilder from './main-components/TeamBuilder';
 import Home from './main-components/Home';
 
 function App() {
-  const [CSSConditions, setCSSConditions] = useState(useContext(CSSConditionals))
+  const CSSFromContext = useContext(CSSConditionals)
+  const [CSSConditions, setCSSConditions] = useState(CSSFromContext)
   const CSSContextState = { CSSConditions: CSSConditions, setCSSConditions: setCSSConditions }
 
   useEffect(() => {
@@ -17,14 +18,11 @@ function App() {
   const hamburgerOnChange = () => {
     setCSSConditions({ ...CSSConditions, legacyHamburgerInput: !CSSConditions.legacyHamburgerInput })
   }
-
+  
   return (
     <CSSConditionals.Provider value={CSSContextState}>
       <CSSVariablesApp remSize={CSSConditions}>
-        <div className={`hamburger-overlay`} onClick={() => {
-          hamburgerOnChange()
-          console.log(CSSConditions)
-        }}></div>
+        <div className={`hamburger-overlay`} onClick={hamburgerOnChange}></div>
         <div className={`navigation-toggle ${CSSConditions.legacyHamburgerInput ? "active" : 'not-active'}`}>
           <NavigationMenu>
             <label className={CSSConditions.cssPropExists ? `hamburger-menu` : conditionalHamburgerLegacyLogic('hamburger-menu', CSSConditions)}>
@@ -44,7 +42,7 @@ function App() {
               </nav>
               <h3>Project Pages</h3>
               <nav>
-                <Link className={`nav-item`} to={`/teambuilder`}>Team Builder</Link>
+                <Link className={`nav-item`} to={`/teambuilder/home`}>Team Builder</Link>
                 <Link className={`nav-item`} to={`/dogs`}>Dogs List</Link>
               </nav>
             </aside>
@@ -56,8 +54,6 @@ function App() {
         <Route path={`/teambuilder/*`} element={<TeamBuilder />}></Route>
       </Routes>
     </CSSConditionals.Provider>
-
-
   );
 }
 

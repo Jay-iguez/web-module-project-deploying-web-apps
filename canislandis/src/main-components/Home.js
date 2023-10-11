@@ -1,10 +1,12 @@
-
+import React, { useContext } from "react"
+import { CSSConditionals } from "../context/CSSStyles-context"
 import { MainContentContainer } from "../styled-components/Component-styled"
 
 export default function Home () {
-
+  const {CSSConditions, setCSSConditions} = useContext(CSSConditionals)
+  
     return (
-        <MainContentContainer>
+        <MainContentContainer remSize={CSSConditions}>
           <div>
             <h1>Welcome to my test-demo React-powered website!</h1>
           </div>

@@ -1,24 +1,33 @@
 import styled from "styled-components";
 
 export const TeamBuilderStyles = styled.div`
-    --font-size: ${props => props.remSize.fontSize};
-
+    --animation-testing: 200ms ease-in-out;
+    font-size: var(--font-size);
     max-width: 100%;
     text-align: center;
     font-family: Oxygen;
-
-    body {
-        font-size: calc(var(--font-size) - .5rem);
-    }
 `
 
-export const MainContainer = styled.div`
+export const Container = styled.div`
     border: .3em solid #a66122;
     background-color: #ecdecc;
     color: #8f5f5f;
     box-shadow: -2em 1em #F5B6A8;
     border-radius: 1em;
     margin: 2em .5em;
+
+`
+export const DogContainersStyled = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+`
+
+export const DogContainer = styled(Container)`
+    max-width: 25em;
+    max-height: 25em;
+    overflow: auto;
+    margin: .5em 2em;
 `
 
 export const Heading = styled.h1`
@@ -26,9 +35,6 @@ export const Heading = styled.h1`
     border-bottom: thick double #733803;
 `
 
-export const Content = styled.div`
-    
-`
 export const Navigation = styled.nav`
     margin: 1.5rem 0;
     display: flex;
@@ -38,14 +44,71 @@ export const Navigation = styled.nav`
     a {
         text-decoration: none;
         text-align: center;
-        font-size: 1.2rem;
         color: #8f5f5f;
-        border: .2rem solid #a66122;
-        margin: .5rem 1rem;
-        padding: .2rem;
+        border: .2em solid #a66122;
+        margin: .5em 1em;
+        padding: .5em;
+        border-radius: 1em;
     }
 
     a:hover {
-        font-size: calc(var(--font-size) + .1rem);
+        transition: transform var(--animation-testing), background-color var(--animation-testing), var(--animation-testing);
+        background-color: wheat;
+        border-bottom: .5em solid #92551e;
+        transform: translateY(-.2em);
+        margin-bottom: -.5em;
     }
+
+    a:not(:hover) {
+        transition: transform var(--animation-testing);
+        transform: translateY(.2em);
+    }
+`
+
+export const TextBox = styled.div`
+    padding-top: .5em;
+
+    h2 {
+        text-align: left;
+        padding-left: 1em;
+        font-style: italic;
+    }
+
+    p {
+        text-align: left;
+        padding-left: 10vw;
+        font-size: calc(var(--font-size) + .1em);
+        margin: 1em 0;
+    }
+
+    ul {
+        text-decoration: none;
+        padding-left: 10vw;
+    }
+
+    @media screen and (max-width: 620px) {
+        img {
+        width: 20em;
+        height: 20em;
+        padding-right: 12vw;
+        }
+
+        p {
+        text-align: left;
+        padding-left: 5em;
+        font-size: calc(var(--font-size) + .2em);
+    }
+    }
+`
+
+export const ProfileImage = styled.img`
+    width: 20em;
+    height: 20em;
+    padding-right: 70vw;
+
+`
+
+export const HeadingImage = styled.img`
+    width: 100%;
+    border-radius: .5em;
 `

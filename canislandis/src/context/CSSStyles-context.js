@@ -1,4 +1,11 @@
 import { createContext } from "react";
-import { CSSBasis } from "../styled-components/App-js-styled";
+
+const CSSBasis = {
+    cssPropExists: false,
+    fontSize: '1rem',
+    burgerWidth: '4rem',
+    burgerHeight: '.6rem',
+    legacyHamburgerInput: false
+}
 
 export const CSSConditionals = createContext(CSSBasis)

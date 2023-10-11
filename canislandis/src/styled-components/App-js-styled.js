@@ -2,14 +2,6 @@ import styled from "styled-components";
 
 // State CSS variables
 
-export const CSSBasis = {
-    cssPropExists: false,
-    fontSize: '1.5rem',
-    burgerWidth: '5rem',
-    burgerHeight: '.8rem',
-    legacyHamburgerInput: false
-}
-
 export const CSSVariablesApp = styled.div`
   *, *::after, *::before {
     box-sizing: border-box;
@@ -54,8 +46,7 @@ export const CSSVariablesApp = styled.div`
 export const NavigationMenu = styled.div`
 font-size: var(--font-size);
 position: fixed;
-
-
+z-index: 998;
 
 //
 .hamburger-menu {
