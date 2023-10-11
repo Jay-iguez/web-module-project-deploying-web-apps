@@ -17,17 +17,71 @@ export const Container = styled.div`
     margin: 2em .5em;
 
 `
-export const DogContainersStyled = styled.div`
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
-`
 
 export const DogContainer = styled(Container)`
     max-width: 25em;
     max-height: 25em;
     overflow: auto;
     margin: .5em 2em;
+
+    &:hover {
+            transition: box-shadow var(--animation-testing);
+            box-shadow: -2em 1em #ed7c63;
+        }
+
+    &:not(hover){
+            transition: box-shadow var(--animation-testing);
+            box-shadow: -2em 1em #F5B6A8;
+    }
+`
+
+export const DogContainersStyled = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+`
+
+export const Form = styled.form`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    padding-bottom: 1em;
+    input, label {
+        text-align: left;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-right: 2em;
+    }
+    label {
+        margin: 1em 20%;
+        border-bottom: .2em solid #a66122;
+    }
+    button {
+        border: .2em solid #a66122;
+        border-radius: 1em;
+        color: #8f5f5f;
+    }
+    button:hover {
+        transition: transform var(--animation-testing), background-color var(--animation-testing), var(--animation-testing);
+        background-color: wheat;
+        border-bottom: .5em solid #92551e;
+        transform: translateY(-.2em);
+        margin-bottom: -.5em;
+    }
+
+    button:not(:hover) {
+        transition: transform var(--animation-testing);
+        transform: translateY(.2em);
+    }
+    button:disabled {
+        opacity: 50%;
+        transition: transform var(--animation-testing), background-color var(--animation-testing), var(--animation-testing);
+        background-color: grey;
+        border-bottom: .5em solid #92551e;
+        transform: translateY(-.2em);
+        margin-bottom: -.5em;
+    }
 `
 
 export const Heading = styled.h1`
@@ -67,6 +121,7 @@ export const Navigation = styled.nav`
 
 export const TextBox = styled.div`
     padding-top: .5em;
+    padding-right: .5em;
 
     h2 {
         text-align: left;

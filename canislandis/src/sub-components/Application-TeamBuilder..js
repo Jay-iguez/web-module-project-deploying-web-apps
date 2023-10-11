@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import coffeeShop from '../data/images/coffee-shop.webp'
-import { Container, HeadingImage, TextBox, Heading } from "../styled-components/TeamBuilder-styled";
+import { Container, HeadingImage, TextBox } from "../styled-components/TeamBuilder-styled";
 import TeamMembersTeamBuilder from "./TeamMembers-TeamBuilder";
+import FormTeamBuilder from "./Form-TeamBuilder";
 
 export default function ApplicationTeamBuilder(props) {
     const { pageState } = props
@@ -30,10 +31,11 @@ export default function ApplicationTeamBuilder(props) {
             <Container>
                 <TextBox>
                     <h2>Come Meet our Team Members!</h2>
-                    <p>Don't worry, none of them won't bite.</p>
+                    <p>Don't worry, none of them <strong>won't</strong> bite.</p>
                 </TextBox>
             </Container>
-                <TeamMembersTeamBuilder />
+            <TeamMembersTeamBuilder />
+            <FormTeamBuilder />
         </>
     )
 }

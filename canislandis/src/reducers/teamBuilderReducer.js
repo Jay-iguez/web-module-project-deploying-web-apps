@@ -6,7 +6,7 @@ const initialState = (() => {
         email: '',
         role: '',
         breed: '',
-        bio: '',
+        temperament: '',
         chew: ''
     }
 
@@ -50,15 +50,45 @@ const initialState = (() => {
         ],
         initialFormValues,
         formValues: { ...initialFormValues, chew: false },
-        formErrors: { ...initialFormValues }
+        formErrors: { ...initialFormValues },
+        hasSubmit: false,
+        disabled: true
     }
 })
 
 export const teamBuilderReducer = (state = initialState(), action) => {
     switch (action.type) {
-        case ACTIONS.LOG:
-            console.log(state)
-            return state
+        case ACTIONS.UPDATE_VALUES:
+            return {
+                ...state,
+                formValues: {...state.formValues, [action.payload.name] : action.payload.value}
+            }
+        case ACTIONS.SET_FORM_ERRORS:
+            const err = action.payload.err
+            return {
+                ...state,
+                formErrors: {...state.formErrors, [action.payload.name] : state[err].formErrors[0]}
+            }
+        case ACTIONS.REVERT_ERRORS:
+            return {
+                ...state,
+                formErrors: {...state.formErrors, [action.payload.name] : '' }
+            }
+        case ACTIONS.REVERT_VALUES:
+            return {
+                ...state,
+                formValues: state.initialFormValues
+            }
+        case ACTIONS.UPDATE_MEMBER:
+            return {
+                ...state,
+                teamMembers: [...state.teamMembers, action.payload]
+            }
+        case ACTIONS.ENABLE_BUTTON:
+            return {
+                ...state,
+                disabled: action.payload
+            }
         default:
             return state
     }

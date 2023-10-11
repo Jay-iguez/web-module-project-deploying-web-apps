@@ -29,16 +29,16 @@ export default function TeamBuilder() {
                     <Container>
                         <Heading>Welcome to the Woofing Bean: {pageType}</Heading>
                         <Navigation>
-                            <Link to={`home`} onClick={() => {setPageType('Home Page')}}>Home</Link>
+                            <Link to={`home`} onClick={() => { setPageType('Home Page') }}>Home</Link>
                             <Link to={`application`}>Position Application</Link>
                             <Link to={`adminstration-login`}>Adminstration</Link>
                         </Navigation>
                     </Container>
+                    <Routes>
+                        <Route path={`home`} element={<HomeTeamBuilder />}></Route>
+                        <Route path={`application`} element={<ApplicationTeamBuilder pageState={currentPageState} />}></Route>
+                    </Routes>
                 </TeamBuilderStyles>
-                <Routes>
-                <Route path={`home`} element={<HomeTeamBuilder />}></Route>
-                <Route path={`application`} element={<ApplicationTeamBuilder pageState={currentPageState} />}></Route>
-            </Routes>
             </MainContentContainer>
         </>
     )
