@@ -23,7 +23,7 @@ export const CSSVariablesApp = styled.div`
     }
 
     .hamburger-overlay {
-    position: absolute;
+    position: fixed;
     z-index: 999;
     width: calc(var(--bar-width) + 1rem);
     height: calc(var(--bar-height) + 3.5rem);

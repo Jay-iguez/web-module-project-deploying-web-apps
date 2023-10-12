@@ -51,6 +51,7 @@ const initialState = (() => {
         initialFormValues,
         formValues: { ...initialFormValues, chew: false },
         formErrors: { ...initialFormValues },
+        user: '',
         hasSubmit: false,
         disabled: true
     }
@@ -76,7 +77,8 @@ export const teamBuilderReducer = (state = initialState(), action) => {
         case ACTIONS.UPDATE_MEMBER:
             return {
                 ...state,
-                teamMembers: [...state.teamMembers, action.payload]
+                teamMembers: [...state.teamMembers, action.payload],
+                user: action.payload
             }
         case ACTIONS.ENABLE_BUTTON:
             return {

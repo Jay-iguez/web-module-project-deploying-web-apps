@@ -4,6 +4,9 @@ import { MainContentContainer } from "../styled-components/Component-styled"
 import { TeamBuilderStyles, Container, Heading, Navigation } from '../styled-components/TeamBuilder-styled'
 import HomeTeamBuilder from '../sub-components/Home-TeamBuilder'
 import ApplicationTeamBuilder from '../sub-components/Application-TeamBuilder.'
+import AdminLoginTeamBuilder from '../sub-components/Admin-TeamBuilder'
+import ProtectedTeamBuilder from '../protected-routes/Protected-TeamBuilder'
+import BleuLoginTeamBuilder from '../protected-routes/BleuLogin-TeamBuilder'
 import { CSSConditionals } from '../context/CSSStyles-context'
 
 export default function TeamBuilder() {
@@ -37,6 +40,11 @@ export default function TeamBuilder() {
                     <Routes>
                         <Route path={`home`} element={<HomeTeamBuilder />}></Route>
                         <Route path={`application`} element={<ApplicationTeamBuilder pageState={currentPageState} />}></Route>
+                        <Route path={`adminstration-login`} element={!token ? <AdminLoginTeamBuilder pageState={currentPageState} setToken={setToken} /> : <BleuLoginTeamBuilder />}></Route>
+
+                        <Route element={<ProtectedTeamBuilder tokenState={tokenState}/>}>
+                            <Route path={`new-doggo`} element={<BleuLoginTeamBuilder />}></Route>
+                        </Route>
                     </Routes>
                 </TeamBuilderStyles>
             </MainContentContainer>
